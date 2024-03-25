@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance Portal</title>
+   {{>Headerlinks}}
+</head>
+
+<body>
+
+    {{>Navbar}}
+    <!-- NavBar -->
+
+
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-3 mb-4">
+                <ul class="nav flex-column">
+                    <li id="active-1" class="nav-item dashboard-item active" onclick="swtichTab(1)">
+                        <a class="nav-link text-black" aria-current="page" href="#"><i
+                                class="fa-solid fa-list"></i>&ensp; Classroom</a>
+                    </li>
+                    <li id="active-2" class="nav-item dashboard-item" onclick="swtichTab(2)">
+                        <a class="nav-link text-black" href="#"><i class="fa-solid fa-user"
+                                style="color: #FFD43B;"></i>&ensp; All Students</a>
+                    </li>
+                    <!-- <li id="active-3" class="nav-item dashboard-item" onclick="swtichTab(3)">
+                        <a class="nav-link text-black" href="#"><i class="fa-solid fa-book"></i>&ensp; Take
+                            Attendance</a>
+                    </li> -->
+                    <li id="active-4" class="nav-item dashboard-item" onclick="swtichTab(4)">
+                        <a class="nav-link text-black" href="#"><i class="fa-solid fa-id-card"
+                                style="color: #ff3d3d;"></i>&ensp; Defaulter Students</a>
+                    </li>
+                    <li id="active-5" class="nav-item dashboard-item">
+                        <a class="nav-link text-black" href="#"><i class="fa-solid fa-download"
+                                style="color: #2cce6a;"></i>&ensp; Download Attendance</a>
+                    </li>
+                    <li id="active-6" class="nav-item dashboard-item">
+                        <a class="nav-link text-black" href="#"><i class="fa-solid fa-right-from-bracket"></i>&ensp;
+                            Logout</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-9">
+                <!-- classroom -->
+                <div id="tab-1" class="container">
+                    <div class="d-flex flex-row-reverse">
+                        <span class=" "><a href="#" class="text-light nav-link badge text-bg-primary py-2 my-2"
+                                data-bs-toggle="modal" data-bs-target="#staticBackdrop">Create a classroom</a></span>
+                    </div>
+                    <div class="row ">
+                        <div class="col-md-6 mb-1">
+                            <div class="card text-dark bg-light mb-3 mx-3">
+                                <div class="card-header"><i class="fas fa-school" style="color:#f45243;"></i></div>
+                                <div class="card-body">
+                                    <h5 class="card-title">Total Classroom</h5>
+                                    <h1>2</h1>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-1">
+                            <div class="card text-dark bg-light mb-3 mx-3">
+                                <div class="card-header"><i class="fas fa-person-booth" style="color:#fc9d40;"></i>
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">Total Students</h5>
+                                    <h1>2</h1>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-1">
+                            <div class="card text-dark bg-light mb-3 mx-3">
+                                <div class="card-header"><i class="fas fa-database" style="color:#2cce9d;"></i></div>
+                                <div class="card-body">
+                                    <h5 class="card-title">Total Lectures</h5>
+                                    <h1>2</h1>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-1">
+                            <div class="card text-dark bg-light mb-3 mx-3">
+                                <div class="card-header"><i class="fas fa-chart-simple" style="color: #018df9;"></i>
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">New Classroom</h5>
+                                    <p class="fs-6">Description</p>
+
+                                </div>
+                                <div class="card-footer text-body-secondary ">
+                                    <span class="badge text-bg-primary py-2 my-2"><a href="#"
+                                            class="text-light nav-link" onclick="swtichTab(3)">Take
+                                            Attendance</a></span>
+                                    <span class="badge text-bg-primary py-2 my-2"><a href="#"
+                                            class="text-light nav-link" onclick="swtichTab(5)">View
+                                            Attendance</a></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- list of all students -->
+
+                <div id="tab-2" class="container" style="display: none;">
+                    <h2 class="my-4">List Of All Students</h2>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Roll No</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Year</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">2</th>
+                                <td>Jacob</td>
+                                <td>Thornton</td>
+                                <td>@fat</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Your Defaulter Classes-->
+
+                <div id="tab-4" class="container" style="display: none;">
+                    <div class="">
+                        <h4>View The List Of Classes in which you have <span class="bg-danger">BELOW
+                                75%</span>attendance</h4>
+                    </div>
+                    <div class="mt-5">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">First</th>
+                                    <th scope="col">Last</th>
+                                    <th scope="col">Handle</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">1</th>
+                                    <td>Mark</td>
+                                    <td>Otto</td>
+                                    <td>@mdo</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">2</th>
+                                    <td>Jacob</td>
+                                    <td>Thornton</td>
+                                    <td>@fat</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- take  attendance -->
+                <div id="tab-3" class="" style="display: none;">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Roll No</th>
+                                <th scope="col">Name</th>
+                                <th colspan="2">P/A</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <form action="">
+                                <tr>
+                                    <th scope="row">1</th>
+                                    <td colspan="2">Lorem, ipsum.</td>
+                                    <td><input style="width: 20px; height: 20px;" type="checkbox" name="name2" />&nbsp;
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">2</th>
+                                    <td colspan="2">Larry the Bird</td>
+                                    <td><input style="width: 20px; height: 20px;" type="checkbox" name="name2" />&nbsp;
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">3</th>
+                                    <td colspan="2">john doe</td>
+                                    <td><input style="width: 20px; height: 20px;" type="checkbox" name="name2" />&nbsp;
+                                    </td>
+                                </tr>
+                                <div class="d-flex flex-row-reverse mx-4">
+                                    <button class="badge text-bg-primary py-2 my-2 border" type="submit">Submit</button>
+                                </div>
+                            </form>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <!-- create a classroom modal -->
+
+    <div class="modal fade mt-12" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Create a new classroom</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Classroom Name</label>
+                            <input type="text" class="form-control" id="exampleInputEmail1"
+                                aria-describedby="emailHelp">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">Description</label>
+                            <input type="text" class="form-control" id="exampleInputPassword1">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Create</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- view attendance modal -->
+
+    <div class="">
+        <div id="tab-5" class="" style="display: none;">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">First</th>
+                        <th scope="col">Last</th>
+                        <th scope="col">Handle</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>Jacob</td>
+                        <td>Thornton</td>
+                        <td>@fat</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td colspan="2">Larry the Bird</td>
+                        <td>@twitter</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+
+
+
+    <footer class="bg-body-tertiary text-center text-lg-start mt-8 footer  ">
+        <!-- Copyright -->
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.05);">
+            © 2020 Copyright:
+            <a class="text-body" href="/">Attendance Portal</a>
+        </div>
+        <!-- Copyright -->
+    </footer>
+
+</body>
+</html>

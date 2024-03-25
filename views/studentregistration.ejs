@@ -1,0 +1,117 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration</title>
+    <%- include('partials/header')%>
+</head>
+
+<body>
+
+     <!-- NavBar -->
+     <% if (isLogin === "teacher") { %>
+        <%- include('partials/loginNavbar1') %>
+    <% } else if (isLogin === "student") { %>
+        <%- include('partials/loginNavbar2') %>
+    <% } else { %>
+        <%- include('partials/Navbar') %>
+    <% } %>
+
+    <div class="">
+        <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+            <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+                <img class="mx-auto h-10 w-auto" src="https://cdn-icons-png.freepik.com/512/3589/3589030.png"
+                    alt="Your Company">
+                <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Create a New
+                    Account</h2>
+            </div>
+
+            <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+                <form class="space-y-4"  action="/studentregistration" method="post">
+                    <div>
+                        <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Full Name</label>
+                        <div class="mt-2">
+                            <input id="email" name="fullName" type="text" required
+                                class="px-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                        </div>
+                    </div>
+
+                    <div class="py-2">
+                        <select id="countries"
+                            class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " name="institute">
+                            <option selected>Select Institute</option>
+                            <% instituteNames.forEach((i) => { %>
+                                <option value="<%= i.instituteName %>"><%= i.instituteName %></option>
+                            <% }) %>
+                        </select>
+                    </div>
+                    <div class="flex space-x-2">
+
+                        <div class="py-2">
+                            <select id="countries"
+                                class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " name="year">
+                                <option selected>Select Year</option>
+                                <option value="FE">FE</option>
+                                <option value="SE">SE</option>
+                                <option value="TE">TE</option>
+                                <option value="BE">BE</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <div class="mt-2">
+                                <input id="rollNo" name="rollNo" type="number" required placeholder="Enter your Roll No"
+                                    class="px-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-4">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email
+                            address</label>
+                        <div class="mt-2">
+                            <input id="email" name="email" type="email" autocomplete="email" required
+                                class="px-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="flex items-center justify-between">
+                            <label for="password"
+                                class="block text-sm font-medium leading-6 text-gray-900">Password</label>
+
+                        </div>
+                        <div class="mt-2">
+                            <input id="password" name="password" type="password" autocomplete="current-password"
+                                required
+                                class="px-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                        </div>
+                    </div>
+
+                    <div>
+                        <button type="submit"
+                            class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Create
+                            Account</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+    <footer class="bg-body-tertiary text-center text-lg-start mt-8 footer ">
+        <!-- Copyright -->
+        <div class="text-center p-3 bg-indigo-500">
+            © 2020 Copyright:
+            <a class="text-body" href="/">Attendance Portal</a>
+        </div>
+        <!-- Copyright -->
+    </footer>
+
+
+
+</body>
+<%- include('partials/scriptlink2')%>
+
+</html>

@@ -1,0 +1,32 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error</title>
+    <%- include('partials/header')%>
+</head>
+
+<body>
+    <% if (isLogin==="teacher" ) { %>
+        <%- include('partials/loginNavbar1') %>
+            <% } else if (isLogin==="student" ) { %>
+                <%- include('partials/loginNavbar2') %>
+                    <% } else if (isLogin==="Institute" ) { %>
+                        <%-include('partials/InstituteNav') %>
+                            <% } else { %>
+                                <%- include('partials/Navbar') %>
+                                    <% } %>
+                                        <div class="bg-orange-100 border-l-4  border-orange-500 text-orange-700 px-4 py-3 mt-10"
+                                            role="alert">
+                                            <p class="font-bold">
+                                                <%=message1%>
+                                            </p>
+                                            <p class="text-sm">
+                                                <%= errorMessage %>
+                                            </p>
+                                        </div>
+</body>
+<%- include('partials/scriptlink2')%>
+
+</html>

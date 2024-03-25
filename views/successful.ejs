@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registration Successful</title>
+  <!-- Bootstrap CSS -->
+  <%- include('partials/header')%>
+    <style>
+      body {
+        background-color: #f8f9fa;
+      }
+
+      .container {
+        margin-top: 100px;
+        text-align: center;
+      }
+
+      .success-icon {
+        font-size: 80px;
+        color: #28a745;
+      }
+
+      .success-message {
+        margin-top: 20px;
+        font-size: 24px;
+        color: #28a745;
+      }
+
+      .btn-home {
+        margin-top: 20px;
+      }
+    </style>
+</head>
+
+<body>
+  <!-- NavBar -->
+  <% if (isLogin==="teacher" ) { %>
+    <%- include('partials/loginNavbar1') %>
+      <% } else if (isLogin==="student" ) { %>
+        <%- include('partials/loginNavbar2') %>
+          <% } else { %>
+            <%- include('partials/Navbar') %>
+              <% } %>
+
+                <div class="container">
+                  <i class="bi bi-check-circle success-icon"></i>
+                  <p class="success-message"style="margin-bottom: 20px;">Registration Successful! Now you can login</p>
+                  <a href="/login"
+                  class="text-center mt-10 w-1/2  rounded-md bg-green-500 px-3 py-2.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-red-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Go to Login</a>
+                </div>
+
+                <!-- Bootstrap JS and Popper.js (optional, for Bootstrap components that require JavaScript) -->
+                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+<%- include('partials/scriptlink2')%>
+
+</html>
