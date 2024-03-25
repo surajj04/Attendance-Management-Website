@@ -2,6 +2,7 @@ const express = require('express');
 const connectdb = require('../db/dbconnect');
 const path = require('path');
 const bodyParser = require('body-parser');
+const ExcelJS = require('exceljs');
 
 // Import models
 const studentReg = require("../db/schema/StudentRegistration");
@@ -177,12 +178,13 @@ app.post("/submit-attendance", async (req, res) => {
 
 
         console.log(numArr)
-
+        let institute;
         let year = "";
         if (numArr.length >= 0) {
             total = 1;
             const student = await studentReg.findOne({ rollNo: numArr[0] });
             year = student.year;
+            institute = student.institute;
             student.attendance.push({
                 date: new Date(),
                 status: "present"
@@ -207,7 +209,7 @@ app.post("/submit-attendance", async (req, res) => {
         }
 
 
-        const teacher = await teacherReg.findOne({ _class: year });
+        const teacher = await teacherReg.findOne({ institute: institute, _class: year });
 
         teacher.lectures.push({
             date: new Date(),
@@ -353,11 +355,58 @@ app.post("/rejectStatusStudent", async (req, res) => {
 
 app.post("/rejectStatusTeacher", async (req, res) => {
     try {
-        const teacher = await teacherReg.findOneAndDelete({ email: req.body.email });
         return res.redirect(302, '/instituteDashboard');
     } catch (error) {
         console.error(error);
         return res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
+app.get("/downloadAttendance", async (req, res) => {
+    try {
+        // Fetch attendance data from MongoDB
+
+        const students = await studentReg.find({ institute: userData.institute, year: userData._class }).sort({ rollNo: 1 });
+
+        // Create a new Excel workbook
+        const workbook = new ExcelJS.Workbook();
+        const worksheet = workbook.addWorksheet('Attendance');
+
+        // Add headers to the worksheet
+
+        worksheet.columns = [
+            { header: 'Full Name', key: 'fullName', width: '20' },
+            { header: 'Year', key: 'year', width: '10' },
+            { header: 'Roll No', key: 'rollNo', width: '10' },
+            { header: 'Attendance', key: 'attendance', width: '10' },
+        ];
+
+        const totalDays = userData.lectures.length;
+
+        // Add attendance data to the worksheet
+        students.forEach(student => {
+            let presentDay = 0;
+            student.attendance.forEach(att => {
+                presentDay++;
+            });
+            worksheet.addRow({
+                fullName: (student.fullName).toUpperCase(),
+                year: student.year.toUpperCase(),
+                rollNo: student.rollNo,
+                attendance: (student.attendance.length / totalDays * 100).toFixed(2) + " %",
+            });
+            presentDay = 0;
+        });
+
+        // Generate Excel file and send it as a response
+        res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        res.setHeader('Content-Disposition', 'attachment; filename="attendance.xlsx"');
+
+        await workbook.xlsx.write(res);
+        res.end();
+    } catch (error) {
+        console.error(error);
+        res.status(500).send("Internal Server Error");
     }
 });
 
